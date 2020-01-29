@@ -23,7 +23,6 @@ namespace Monopoly
             string[] GameBoard = new string[30];
             string[] assets = new string[30];
             int[] assetsPrices = new int[30];
-
             FillGameBoard(GameBoard, assets, assetsPrices);
 
             //gameplay
@@ -98,7 +97,6 @@ namespace Monopoly
                         case "factory":
                             LoseCounter = CheckOwnership(Ownership, players, CurrentPlayer, Punishment, bal, PlayerPosition, assets[PlayerPosition[CurrentPlayer - 1]], "Factory", assetPrices[PlayerPosition[CurrentPlayer - 1]], LoseCounter);
                             break;
-
                         case "highway":
                             Console.Write("Unfortunately you've been ");
                             WriteInColor("caught speeding :( ", "Red", false);
@@ -106,21 +104,18 @@ namespace Monopoly
                             bal[CurrentPlayer - 1] -= 50;
                             LoseCounter = CheckBankrupcy(bal, Punishment, Ownership, players, LoseCounter, CurrentPlayer - 1);
                             break;
-
                         case "lottery":
                             Console.Write("wHOO whoo! Someone ");
                             WriteInColor("WON THE LOTTERY! ", "Green", false);
                             Console.WriteLine("so a total of 200 ils has been added to your balance");
                             bal[CurrentPlayer - 1] += 200;
                             break;
-
                         case "jail":
                             Console.Write("O'shit I feel sry 4 u cuz you landed on an ");
                             WriteInColor("A PRISON CELL! ", "Red", false);
                             Console.WriteLine("So now u're in jail for 2 turns hehe xd");
                             Punishment[CurrentPlayer - 1] += 2;
                             break;
-
                         case "fine":
                             Console.Write("It's not your lucky turn because you landed on an ");
                             WriteInColor("A FINE CELL! ", "Red", false);
@@ -128,7 +123,6 @@ namespace Monopoly
                             bal[CurrentPlayer - 1] -= 200;
                             LoseCounter = CheckBankrupcy(bal, Punishment, Ownership, players, LoseCounter, CurrentPlayer - 1);
                             break;
-
                         case "skip5":
                             Console.Write("You got lucky and landed on ");
                             WriteInColor("JUMP 5 CELLS ", "Green", false);
@@ -136,17 +130,14 @@ namespace Monopoly
                             WriteInColor("EMPTY SPACE!", "Yellow", false);
                             PlayerPosition[CurrentPlayer - 1] += 5;
                             break;
-
                         default:
                             Console.Write("You've safely landed on an ");
                             WriteInColor("EMPTY SPACE!", "Yellow", true);
                             break;
                     }
-
                     //display stats
                     DisplayStats(players, bal, Ownership, assets);
                 }
-
                 //checking if the game is over
                 if (LoseCounter > players.Length - 2)
                     IsGameOver = true;
@@ -175,11 +166,9 @@ namespace Monopoly
                         Ownership[PlayerPosition[CurrentPlayer - 1]] = players[CurrentPlayer - 1];
                         LoseCounter = CheckBankrupcy(bal, Punishment, Ownership, players, LoseCounter, CurrentPlayer - 1);
                         break;
-
                     case "no":
                         Console.WriteLine("\nThe salesman seemed disappoined by your reaction, and with that you left");
                         break;
-
                     case "hacks":
                         Console.WriteLine("\nwait 'hacks' was never an option wtf did u do");
                         bal[CurrentPlayer - 1] -= 10000;
@@ -209,27 +198,22 @@ namespace Monopoly
                                 LoseCounter = CheckBankrupcy(bal, Punishment, Ownership, players, LoseCounter, CurrentPlayer - 1);
                             }
                             break;
-
                         case "Factory":
                             Console.WriteLine($"This {place} is the property of {Ownership[PlayerPosition[CurrentPlayer - 1]]} and with no choice {Ownership[PlayerPosition[CurrentPlayer - 1]]} you have to stay and work there for 1 turn and in return you'll get 50 ils");
 
                             bal[CurrentPlayer - 1] += 50;
                             Punishment[CurrentPlayer - 1] = 1;
                             break;
-
                     }
                 }
                 else
                     Console.WriteLine($"Oh its your {place}, nothing happens then");
-
             }
 
             return LoseCounter;
         }
         public static void DisplayStats(string[] players, int[] bal, string[] Ownership, string[] assets)
         {
-            ///Displays the stats for each player (balance and estates)
-
             //display stats
             Console.WriteLine();
             string PrintEstate;
@@ -265,21 +249,15 @@ namespace Monopoly
                     WriteInColor(players[i], "Cyan", false);
                     Console.Write($" has gone");
                     WriteInColor(" Bankrupt!", "Red", true);
-
                 }
-
             }
-
             Console.Write("\nPress");
             WriteInColor(" 'ENTER'", "Cyan", false);
             Console.WriteLine(" to continue");
             Console.ReadKey();
-
         }
         public static void GameOverScene(string[] players, int[] bal, string[] Ownership, string[] assets)
         {
-            ///The end scene
-
             //makes everything look nice
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -292,7 +270,6 @@ namespace Monopoly
             Console.ForegroundColor = ConsoleColor.White;
             WriteInColor("The game has ended and these are the stats:", "Red", true);
             DisplayStats(players, bal, Ownership, assets);
-
         }
         public static int CheckBankrupcy(int[] bal, int[] Punishment, string[] Ownership, string[] players, int LoseCounter, int CheckPlayer)
         {
@@ -307,7 +284,6 @@ namespace Monopoly
             }
             Console.WriteLine(LoseCounter);
             return LoseCounter;
-
         }
         public static void FillGameBoard(string[] GameBoard, string[] assets, int[] assetsPrices)
         {
@@ -429,14 +405,11 @@ namespace Monopoly
                                 DupeNames = true;
                                 break;
                             }
-
                     }
-
             }
         }
         public static void WriteInColor(string str, string color, bool WriteLineFull)
         {
-
             ///This function writes in colors (text,color,writeline or write)
             switch (color)
             {
@@ -452,7 +425,6 @@ namespace Monopoly
                 case "Red":
                     Console.ForegroundColor = ConsoleColor.Red;
                     break;
-
             }
             if (WriteLineFull)
                 Console.WriteLine(str);
@@ -477,9 +449,7 @@ namespace Monopoly
         {
             ///return a random number between 1-6 to stimulate a cube toss
             return rnd.Next(1, 7);
-
         }
-
     }
 }
 //poorly made by Asaf Zanjiri :)
